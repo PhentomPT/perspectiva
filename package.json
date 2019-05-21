@@ -1,5 +1,5 @@
 {
-  "name": "perspectiva",
+  "name": "@phentompt/perspectiva",
   "version": "0.0.1",
   "description": "A framework wrapper to improve development startup time while adding helpful features and maintaining autocompletion",
   "main": "index.js",
