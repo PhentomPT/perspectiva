@@ -3,6 +3,28 @@ const express = require('express');
 const consola = require('consola');
 const colors = require('colors/safe');
 
+function _getCallerFolder() {
+  const originalTrace = Error.prepareStackTrace;
+  
+  let callerfile;
+  try {
+    const err = new Error();
+
+    Error.prepareStackTrace = function (err, stack) { return stack; };
+
+    let currentfile = err.stack.shift().getFileName();
+    while (err.stack.length) {
+      callerfile = err.stack.shift().getFileName();
+
+      if (currentfile !== callerfile) break;
+    }
+  } catch (error) { }
+
+  Error.prepareStackTrace = originalTrace;
+
+  return path.dirname(callerfile);
+}
+
 const app = express();
 
 const API = class {
@@ -13,6 +35,7 @@ const API = class {
   }
 
   use (middlewares = []) {
+    const workdir = _getCallerFolder();
     return new Promise((resolve, reject) => {
       if (!Array.isArray(middlewares)) {
         return reject(new Error('Global middleware list must be an array'));
@@ -20,7 +43,11 @@ const API = class {
 
       try {
         for (let index = 0; index < middlewares.length; index++) {
-          app.use(middlewares[index]);
+          if (typeof middlewares[index] === 'string') {
+            app.use(require(`${workdir}/${middlewares[index]}`));
+          } else {
+            app.use(middlewares[index]);
+          }
         }
       } catch (error) {
         return reject(new Error(error.message));
@@ -31,11 +58,12 @@ const API = class {
   }
 
   router (routing = { 'GET /': (req, res) => { res.json('Welcome') } }) {
+    const workdir = _getCallerFolder();
+
     return new Promise((resolve, reject) => {
       this.routes = routing;
 
       for (const key in this.routes) {
-        const workdir = path.dirname(path.dirname(module.parent.filename));
         const keys = key.split(' ');
         const method = keys[0].toLowerCase();
         const route = keys[1];

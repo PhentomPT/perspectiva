@@ -34,7 +34,7 @@ API.use([
   },
   '/middlewares/another'
 ])
-.then(router({
+.then(API.router({
   'GET /': (req = API.request, res = API.response) => {
     res.json('Controller reached');
   }
@@ -51,7 +51,7 @@ Note that **'/middlewares/another'** will be loaded as a well.
 const { API, CONSOLA } = require('@phentompt/perspectiva');
 
 API.use([])
-.then(router({
+.then(API.router({
   'GET /': [
   (req = API.request, res = API.response, next) => {
     CONSOLA.info('A specific middleware');
@@ -72,8 +72,8 @@ const { API, CONSOLA } = require('@phentompt/perspectiva');
 API.use([
   '/middlewares/global'
 ])
-.then(router({
-  'GET /': ['/middlewares/specific', 'controllers/home']
+.then(API.router({
+  'GET /': ['/middlewares/specific', 'controllers/home'],
   'POST /': ['/middlewares/specific', 'controllers/home_post']
 }))
 .then(API.start(3000));

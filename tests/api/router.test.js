@@ -12,7 +12,7 @@ test('API.router({\'GET /\': [ require(\'./resources/middleware\'), require(\'./
 
 test('API.router({\'GET /\': [\'./middleware\', \'./controller\'] })', async () => {
   await expect(API.router({
-    'GET /': ['resources/middleware', 'resources/controller']
+    'GET /': ['../resources/middleware', '../resources/controller']
   })).resolves.toBe('OK');
 });
 

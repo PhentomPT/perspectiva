@@ -19,5 +19,21 @@
   "devDependencies": {
     "jest": "^24.8.0",
     "nodemon": "^1.19.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhentomPT/perspectiva.git"
+  },
+  "keywords": [
+    "framework",
+    "wrapper",
+    "express"
+  ],
+  "bugs": {
+    "url": "https://github.com/PhentomPT/perspectiva/issues"
+  },
+  "homepage": "https://github.com/PhentomPT/perspectiva#readme"
 }
