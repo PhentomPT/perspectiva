@@ -1,0 +1,7 @@
+{
+  "name": "perspectiva",
+  "verbose": true,
+  "coveragePathIgnorePatterns": [
+    "/node_modules/", "/tests/resources/"
+  ]
+}
