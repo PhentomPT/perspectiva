@@ -1,7 +1,4 @@
-const CORE = require('./api');
-const MIDDLEWARES = require('./middlewares');
-
 module.exports = {
-  ...CORE,
-  ...MIDDLEWARES
-}
+  API: require('./lib/api'),
+  MIDDLEWARES: require('./lib/middlewares')
+};

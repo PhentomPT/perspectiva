@@ -1,4 +1,5 @@
-const { API } = require('../../api');
+/* eslint-disable no-undef */
+const { API } = require('../../lib/api');
 
 test('API.use()', async () => {
   await expect(API.use()).resolves.toBe('OK');

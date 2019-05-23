@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest --coverage --config jest-config.json",
-    "security": "snyk test"
+    "security": "snyk test",
+    "lint": "eslint . --fix"
   },
   "author": "PhentomPT",
   "license": "MIT",
@@ -17,6 +18,12 @@
     "express": "^4.17.0"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0"
   },

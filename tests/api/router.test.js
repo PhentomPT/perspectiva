@@ -1,4 +1,5 @@
-const { API } = require('../../api');
+/* eslint-disable no-undef */
+const { API } = require('../../lib/api');
 
 test('API.router()', async () => {
   await expect(API.router()).resolves.toBe('OK');
@@ -27,4 +28,3 @@ test('API.router({\'GET /\': [\'controller_does_not_exist\']})', async () => {
     'GET /': ['controller_does_not_exist']
   })).rejects.toThrow(Error);
 });
-

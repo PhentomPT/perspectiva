@@ -1,1 +1,1 @@
-module.exports = (req, res) => { res.json('WORKING') }
+module.exports = (req, res) => { res.json('WORKING'); };
